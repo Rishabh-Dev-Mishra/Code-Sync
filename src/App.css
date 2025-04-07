@@ -1,13 +1,24 @@
-.homePageWrapper{
+html,
+body {
+  height: 100vh;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+}
+
+/* Wrapper to ensure everything fits within 100vh */
+.homePageWrapper {
   height: 100vh;
   display: flex;
+  flex-direction: column;
   align-items: center;
   justify-content: center;
   color: #fff;
+  overflow: hidden;
 }
 
-
-.formWrapper{
+/* Form Styling */
+.formWrapper {
   background-color: #282a36;
   padding: 20px;
   border-radius: 10px;
@@ -15,31 +26,35 @@
   max-width: 90%;
 }
 
-footer{
+footer {
   position: fixed;
   bottom: 0;
+  width: 100%;
+  text-align: center;
+  background: #1c1e29;
+  padding: 10px;
 }
 
-footer a{
+footer a {
   color: #4aee88;
 }
 
-.inputGroup{
+.inputGroup {
   display: flex;
   flex-direction: column;
 }
 
-.mainLabel{
+.mainLabel {
   margin-bottom: 20px;
   margin-top: 0;
 }
 
-.homePageLogo{
+.homePageLogo {
   height: 80px;
   margin-bottom: 30px;
 }
 
-.inputBox{
+.inputBox {
   padding: 10px;
   border-radius: 5px;
   outline: none;
@@ -50,7 +65,7 @@ footer a{
   font-weight: bold;
 }
 
-.btn{
+.btn {
   border: none;
   padding: 10px;
   border-radius: 5px;
@@ -60,43 +75,47 @@ footer a{
   transition: all 0.3s ease-in-out;
 }
 
-.joinBtn, .leaveBtn{
+.joinBtn,
+.leaveBtn {
   background-color: #4aee88;
   width: 100px;
   margin-left: auto;
 }
 
-.joinBtn:hover, .leaveBtn:hover{
+.joinBtn:hover,
+.leaveBtn:hover {
   background: #2b824c;
 }
 
-.createInfo{
+.createInfo {
   margin: 0 auto;
   margin-top: 20px;
 }
 
-.createNewBtn{
-  color:#4aee88;
+.createNewBtn {
+  color: #4aee88;
   text-decoration: none;
   border-bottom: 1px solid #4aee88;
   transition: all 0.3s ease-in-out;
 }
 
-.createNewBtn:hover, footer a:hover{
+.createNewBtn:hover,
+footer a:hover {
   color: #368654;
   border-color: #368654;
-
 }
 
-
-
-.mainWrap{
-  display:grid;
+/* Main Layout - Code Editor + Sidebar */
+.mainWrap {
+  display: grid;
   grid-template-columns: 230px 1fr;
-  /* height: 100vh; */
+  height: 100vh;
+  bottom: 0;
+  overflow: hidden;
 }
 
-.aside{
+/* Sidebar */
+.aside {
   background: #1c1e29;
   padding: 16px;
   color: #fff;
@@ -104,46 +123,114 @@ footer a{
   flex-direction: column;
 }
 
-.asideInner{
+.asideInner {
   flex: 1;
 }
 
-.clientsList{
-  display:flex;
+.clientsList {
+  display: flex;
   align-items: center;
   flex-wrap: wrap;
   gap: 20px;
 }
 
-.client{
+.client {
   display: flex;
-    align-items: center;
-    flex-direction: column;
-    font-weight: bold;
+  align-items: center;
+  flex-direction: column;
+  font-weight: bold;
 }
 
-.username{
-  margin-top: 10px
+.username {
+  margin-top: 10px;
 }
 
-.logo{
+.logo {
   border-bottom: 1px solid #424242;
   padding-bottom: 10px;
 }
 
-.logoImage{
+.logoImage {
   height: 60px;
 }
 
-.leaveBtn{
+.leaveBtn {
   margin-top: 20px;
   width: 100%;
 }
 
-.CodeMirror{
-  min-height: calc(100vh - 20px);
-  /* remove scrolling */
+/* Code Editor */
+.editorContainer {
+  display: flex;
+  flex-direction: column;
+  height: 100vh;
+  /* 100% */
+}
+
+/* Code Editor Styling */
+.CodeMirror {
+  flex-grow: 1;
+  /* Takes up all available space */
   font-size: 20px;
   line-height: 1.6;
-  padding-top: 20px;
+  padding: 10px;
+  background: #282a36;
+  border-radius: 5px;
+  overflow: hidden;
+}
+
+
+/* Bottom Bar */
+.bottomSection {
+  display: flex;
+  justify-content: space-between;
+  padding: 10px;
+  background: #282a36;
+}
+
+/* Language Selection */
+.languageSelect {
+  padding: 8px;
+  border-radius: 5px;
+  background: #2d2f2e;
+  color: white;
+  border: none;
+}
+
+/* Run Button */
+.runBtn {
+  background-color: #b8e362;
+  padding: 10px 15px;
+  border-radius: 5px;
+  border: none;
+  cursor: pointer;
+}
+
+/* Output Window */
+.outputWindow {
+  background: #242426;
+  color: rgb(246, 232, 232);
+  padding: 15px;
+  border-radius: 5px;
+  overflow: auto;
+  height: 27vh;
+  /* resize: vertical; */
+  margin-bottom: 0;
+  flex-grow: 1;
+  display: flex;
+  flex-direction: column;
+  align-self: flex-start;
+  /* Ensures resizing happens from the top */
+}
+
+
+textarea{
+  background-color: #49494d;
+  color: white;
+  height: 4em;
+  width: 100%;
+}
+
+.inputArea{
+  color: #fff;
 }
