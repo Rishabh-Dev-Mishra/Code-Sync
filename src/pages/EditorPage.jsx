@@ -16,7 +16,7 @@ const EditorPage = () => {
     const [clients, setClients] = useState([]);
     const [output, setOutput] = useState("");
     const [language, setLanguage] = useState("cpp");
-    const [userInput, setUserInput] = useState(""); // State to store user input
+    const [userInput, setUserInput] = useState("");
 
     useEffect(() => {
         const init = async () => {
