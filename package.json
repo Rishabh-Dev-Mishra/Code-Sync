@@ -6,28 +6,23 @@
   "scripts": {
     "dev": "vite",
     "build": "vite build",
-    "server:dev": "nodemon server.js",
-    "server:prod": "node server.js",
-    "lint": "eslint .",
-    "preview": "vite preview"
+    "preview": "vite preview",
+    "lint": "eslint ."
   },
   "dependencies": {
     "axios": "^1.8.1",
     "codemirror": "^5.65.18",
-    "express": "^4.21.2",
-    "react": "^19.0.0",
+    "react": "^18.3.1",
     "react-avatar": "^5.0.3",
-    "react-dom": "^19.0.0",
+    "react-dom": "^18.3.1",
     "react-hot-toast": "^2.5.1",
     "react-router-dom": "^7.1.5",
-    "socket.io": "^4.8.1",
-    "socket.io-client": "^4.8.1",
     "uuid": "^11.0.5"
   },
   "devDependencies": {
     "@eslint/js": "^9.19.0",
-    "@types/react": "^19.0.8",
-    "@types/react-dom": "^19.0.3",
+    "@types/react": "^18.2.62",
+    "@types/react-dom": "^18.2.19",
     "@vitejs/plugin-react": "^4.3.4",
     "eslint": "^9.19.0",
     "eslint-plugin-react": "^7.37.4",
