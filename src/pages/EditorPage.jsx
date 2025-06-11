@@ -82,7 +82,7 @@ const EditorPage = () => {
             data: {
                 language_id: language === "cpp" ? 54 : 63,
                 source_code: codeRef.current,
-                stdin: userInput, // Pass the user input here
+                stdin: userInput,
             },
         };
 
