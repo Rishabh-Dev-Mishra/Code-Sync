@@ -27,7 +27,7 @@ Clone the repository: git clone https://github.com/Rishabh-Dev-Mishra/Code-Sync.
 
 **Run the development server:** npm run dev
 
-Visit http://localhost:3000 to view the app.
+Visit (https://code-sync-rd.vercel.app/) to view the app.
 
 **Usage**
 Start a new room by creating a unique room ID.
