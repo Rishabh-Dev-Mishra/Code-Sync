@@ -1,45 +1,99 @@
-⛳**CodeSync**
-CodeSync is a real-time code collaboration platform that enables developers to work together seamlessly. Whether you're pair programming, conducting a coding interview, or contributing to an open-source project, CodeSync ensures a smooth and synchronized experience.
+# CodeSync
 
-**Tech Stack**
-React: A JavaScript library for building user interfaces.
-Vite: A fast build tool that provides lightning-fast hot module replacement (HMR).
-Socket.IO: For real-time bidirectional event-based communication.
+**CodeSync** is a real-time code collaboration platform that enables developers to work together seamlessly. Whether you're pair programming, conducting a coding interview, or contributing to an open-source project, CodeSync ensures a smooth and synchronized experience.
 
-**Features**
-Real-time collaborative coding with seamless synchronization.
-Multiple developers can edit the same code simultaneously.
-Each user sees live changes made by others in real-time.
-A smooth and efficient interface designed with React and Vite for modern development workflows.
+## Tech Stack
 
-**Installation**
+- **React:** A JavaScript library for building user interfaces.
+
+- **Vite:** A fast build tool that provides lightning-fast hot module replacement (HMR).
+
+- **Socket.IO:** For real-time bidirectional event-based communication.
+
+## Features
+
+- Real-time collaborative coding with seamless synchronization
+
+- Multiple developers can edit the same code simultaneously
+
+- Live code updates visible to all connected users
+
+- Run code directly from the editor
+
+- Save code to local file with correct language extension
+
+- Copy entire editor code to clipboard
+
+- Room-based collaboration using a unique Room ID
+
+- Smooth and efficient interface built with React and Vite
+
+## Installation
+
 To get started with the project, clone this repository and follow the steps below:
 
 **Prerequisites**
-Make sure you have Node.js and npm installed on your machine.
+
+- Node.js
+
+- npm
 
 **Steps to Install**
-Clone the repository: git clone https://github.com/Rishabh-Dev-Mishra/Code-Sync.git
 
-**Navigate into the project directory:** cd Code-Sync
+1. Clone the repository: 
 
-**Install dependencies: **npm install
+    ```bash
+    git clone https://github.com/Rishabh-Dev-Mishra/Code-Sync.git
+    ```
 
-**Run the development server:** npm run dev
+2. Navigate into the project directory:
+ 
+    ```bash
+    cd Code-Sync
+    ```
 
-Visit (https://code-sync-rd.vercel.app/) to view the app.
+3. Install dependencies: 
 
-**Usage**
-Start a new room by creating a unique room ID.
-Join an existing room by entering the room ID.
-Collaborate in real-time and see changes from all users in the room.
-Share the room ID with others for them to join your coding session.
+    ```bash
+    npm install
+    ```
 
-**Contributing**
+4. Run the development server:
+
+    ```bash
+    npm run dev
+    ```
+
+Visit the live app: [Click Here!](https://code-sync-rd.vercel.app/)
+
+## Usage
+
+- Create a new room using a unique Room ID
+
+- Join an existing room using the Room ID
+
+- Collaborate in real time with other users
+
+- Use:
+
+    - Copy to copy the entire editor code
+
+    - Save to download code with language-based file extension
+
+    - Run Code to execute and view output
+
+## Contributing
+
 We welcome contributions to improve CodeSync!
 
 **To contribute:**
 
-Fork the repository.
-Create a new branch for your changes.
-Submit a pull request with a detailed description of your changes.
+- Fork the repository.
+
+- Create a new branch for your changes.
+
+- Submit a pull request with a detailed description of your changes.
+
+## Preview
+
+![Code Sync Preview](public/preview-image.png)

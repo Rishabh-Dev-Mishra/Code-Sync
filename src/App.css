@@ -188,6 +188,38 @@ footer a:hover {
   background: #282a36;
 }
 
+.actionButtons {
+    display: flex;
+    gap: 10px;
+}
+
+.copyBtn {
+    background-color: #374151;
+    color: #ffffff;
+}
+
+.copyBtn:hover {
+    background-color: #1f2937;
+}
+
+.saveBtn {
+    background-color: #4b5563;
+    color: #ffffff;
+}
+
+.saveBtn:hover {
+    background-color: #374151;
+}
+
+.runBtn {
+    background-color: #16a34a;
+    color: #ffffff;
+}
+
+.runBtn:hover {
+    background-color: #15803d;
+}
+
 /* Language Selection */
 .languageSelect {
   padding: 8px;

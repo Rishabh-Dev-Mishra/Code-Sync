@@ -13,6 +13,7 @@ const EditorPage = () => {
     const location = useLocation();
     const { roomId } = useParams();
     const reactNavigator = useNavigate();
+    const editorComponentRef = useRef(null);
     const [clients, setClients] = useState([]);
     const [output, setOutput] = useState("");
     const [language, setLanguage] = useState("cpp");
@@ -136,19 +137,61 @@ const EditorPage = () => {
                 <Editor
                     socketRef={socketRef}
                     roomId={roomId}
+                    ref={editorComponentRef}
+                    language={language}
                     onCodeChange={(code) => {
                         codeRef.current = code;
                     }}
                 />
-                <span className="bottomSection">
-                    <select className="languageSelect" onChange={(e) => setLanguage(e.target.value)}>
+                
+                <div className="bottomSection">
+                    <select
+                        className="languageSelect"
+                        value={language}
+                        onChange={(e) => setLanguage(e.target.value)}
+                    >
                         <option value="cpp">C++</option>
                         <option value="javascript">JavaScript</option>
                     </select>
-                    <button className="btn runBtn" onClick={executeCode}>
-                        Run Code
-                    </button>
-                </span>
+
+                    <div className="actionButtons">
+                        <button
+                            type="button"
+                            className="btn copyBtn"
+                            onClick={(e) => {
+                                e.preventDefault();
+                                e.stopPropagation();
+                                editorComponentRef.current?.copyCode();
+                            }}
+                        >
+                            Copy
+                        </button>
+
+                        <button
+                            type="button"
+                            className="btn saveBtn"
+                            onClick={(e) => {
+                                e.preventDefault();
+                                e.stopPropagation();
+                                editorComponentRef.current?.saveFile();
+                            }}
+                        >
+                            Save
+                        </button>
+
+                        <button
+                            type="button"
+                            className="btn runBtn"
+                            onClick={(e) => {
+                                e.preventDefault();
+                                e.stopPropagation();
+                                executeCode();
+                            }}
+                        >
+                            Run Code
+                        </button>
+                    </div>
+                </div>
 
                 {/* User Input Field */}
                 <div className="inputSection">
