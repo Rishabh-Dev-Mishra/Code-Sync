@@ -13,22 +13,31 @@ const EditorPage = () => {
     const location = useLocation();
     const { roomId } = useParams();
     const reactNavigator = useNavigate();
+
     const [clients, setClients] = useState([]);
     const [output, setOutput] = useState("");
     const [language, setLanguage] = useState("cpp");
     const [userInput, setUserInput] = useState("");
 
+    // 🔹 Language → Judge0 ID mapping
+    const languageIdMap = {
+        cpp: 54,          // C++
+        javascript: 63,   // JavaScript
+        python: 71,       // Python 3
+        java: 62,         // Java
+    };
+
     useEffect(() => {
         const init = async () => {
             socketRef.current = await initSocket();
 
-            socketRef.current.on("connect_error", (err) => handleErrors(err));
-            socketRef.current.on("connect_failed", (err) => handleErrors(err));
-
-            function handleErrors(e) {
+            const handleErrors = () => {
                 toast.error("Socket connection failed. Redirecting...");
                 reactNavigator("/");
-            }
+            };
+
+            socketRef.current.on("connect_error", handleErrors);
+            socketRef.current.on("connect_failed", handleErrors);
 
             socketRef.current.emit(ACTIONS.JOIN, {
                 roomId,
@@ -53,7 +62,9 @@ const EditorPage = () => {
 
             socketRef.current.on(ACTIONS.DISCONNECTED, ({ socketId, username }) => {
                 toast.success(`${username} left the room.`);
-                setClients((prev) => prev.filter((client) => client.socketId !== socketId));
+                setClients((prev) =>
+                    prev.filter((client) => client.socketId !== socketId)
+                );
             });
         };
 
@@ -70,25 +81,23 @@ const EditorPage = () => {
     }, []);
 
     const executeCode = async () => {
-        const options = {
-            method: "POST",
-            url: "https://judge0-ce.p.rapidapi.com/submissions",
-            params: { base64_encoded: "false", wait: "true" },
-            headers: {
-                "content-type": "application/json",
-                "X-RapidAPI-Key": "849c6b413bmshe4226e25e12af8dp1b55b0jsn613c9cf0e560",
-                "X-RapidAPI-Host": "judge0-ce.p.rapidapi.com",
-            },
-            data: {
-                language_id: language === "cpp" ? 54 : 63,
-                source_code: codeRef.current,
-                stdin: userInput,
-            },
-        };
-
         try {
-            const response = await axios.request(options);
-            setOutput(response.data.stdout || response.data.stderr);
+            const response = await axios.request({
+                method: "POST",
+                url: "https://judge0-ce.p.rapidapi.com/submissions",
+                params: { base64_encoded: "false", wait: "true" },
+                headers: { "content-type": "application/json", 
+                "X-RapidAPI-Key": "849c6b413bmshe4226e25e12af8dp1b55b0jsn613c9cf0e560", 
+                "X-RapidAPI-Host": "judge0-ce.p.rapidapi.com", 
+            },
+                data: {
+                    language_id: languageIdMap[language],
+                    source_code: codeRef.current,
+                    stdin: userInput,
+                },
+            });
+
+            setOutput(response.data.stdout || response.data.stderr || "No output");
         } catch (error) {
             setOutput("Error executing code");
         }
@@ -98,7 +107,7 @@ const EditorPage = () => {
         try {
             await navigator.clipboard.writeText(roomId);
             toast.success("Room ID copied!");
-        } catch (err) {
+        } catch {
             toast.error("Could not copy Room ID");
         }
     }
@@ -121,7 +130,10 @@ const EditorPage = () => {
                     <h3>Connected</h3>
                     <div className="clientsList">
                         {clients.map((client) => (
-                            <Client key={client.socketId} username={client.username} />
+                            <Client
+                                key={client.socketId}
+                                username={client.username}
+                            />
                         ))}
                     </div>
                 </div>
@@ -132,28 +144,37 @@ const EditorPage = () => {
                     Leave
                 </button>
             </div>
+
             <div className="editorWrap">
                 <Editor
                     socketRef={socketRef}
                     roomId={roomId}
+                    language={language}
                     onCodeChange={(code) => {
                         codeRef.current = code;
                     }}
                 />
+
                 <span className="bottomSection">
-                    <select className="languageSelect" onChange={(e) => setLanguage(e.target.value)}>
+                    <select
+                        className="languageSelect"
+                        value={language}
+                        onChange={(e) => setLanguage(e.target.value)}
+                    >
                         <option value="cpp">C++</option>
                         <option value="javascript">JavaScript</option>
+                        <option value="python">Python</option>
+                        <option value="java">Java</option>
                     </select>
+
                     <button className="btn runBtn" onClick={executeCode}>
                         Run Code
                     </button>
                 </span>
 
-                {/* User Input Field */}
                 <div className="inputSection">
                     <h3>Input</h3>
-                    <textarea 
+                    <textarea
                         className="inputArea"
                         rows="4"
                         placeholder="Enter input here..."
@@ -162,7 +183,6 @@ const EditorPage = () => {
                     />
                 </div>
 
-                {/* Output Section */}
                 <div className="outputWindow">
                     <h3>Output</h3>
                     <pre>{output}</pre>
